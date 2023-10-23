@@ -1,15 +1,17 @@
-import { galleryItems } from './gallery-items.js'; 
+// js/01-gallery.js
+import { galleryItems } from './gallery-items.js';
+
 const galleryContainer = document.querySelector('.gallery');
 
 function createGalleryMarkup(items) {
   return items
-    .map(({ original, description }) => {
+    .map(({ preview, original, description }) => {
       return `
         <li class="gallery__item">
           <a class="gallery__link" href="${original}">
             <img
               class="gallery__image"
-              src="${original}"
+              src="${preview}"
               alt="${description}"
             />
           </a>
@@ -21,13 +23,12 @@ function createGalleryMarkup(items) {
 
 galleryContainer.innerHTML = createGalleryMarkup(galleryItems);
 
-
 galleryContainer.addEventListener('click', (e) => {
   e.preventDefault();
   const { target } = e;
 
   if (target.classList.contains('gallery__image')) {
-    const source = target.getAttribute('href'); 
+    const source = target.parentElement.getAttribute('href');
     openModal(source);
   }
 });
