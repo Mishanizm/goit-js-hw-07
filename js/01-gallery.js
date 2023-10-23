@@ -1,4 +1,3 @@
-// js/01-gallery.js
 import { galleryItems } from './gallery-items.js';
 
 const galleryContainer = document.querySelector('.gallery');
